@@ -40,7 +40,9 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
         itemHeight={50}
         wheel={'normal'}
       />
-      <button onClick={handleConfirm}>Подтвердить</button>
+      <button className="Btn" onClick={handleConfirm}>
+        Подтвердить
+      </button>
     </div>
   );
 };
