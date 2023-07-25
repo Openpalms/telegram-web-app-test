@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import './App.css';
 import { TimePicker } from './Components/TimePicker/TimePicker';
+import { useTelegram } from './hooks/useTelegram';
 
 declare global {
   interface Window {
@@ -8,8 +9,8 @@ declare global {
   }
 }
 
-const telegram = window.Telegram.WebApp;
 function App() {
+  const { telegram } = useTelegram();
   useEffect(() => {
     telegram.ready();
     telegram.MainButton.show();
@@ -20,19 +21,10 @@ function App() {
   const onClose = () => {
     telegram.close();
   };
-  const onToggle = () => {
-    if (telegram.MainButton.isOpened) {
-      telegram.MainButton.hide();
-    } else {
-      telegram.MainButton.show();
-    }
-  };
+
   return (
     <div className="App">
       <TimePicker onClose={onClose} />
-      <button className="Btn" onClick={onToggle}>
-        Закрыть
-      </button>
     </div>
   );
 }

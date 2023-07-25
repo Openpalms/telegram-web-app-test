@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Picker from 'react-mobile-picker';
+import { useTelegram } from '../../hooks/useTelegram';
 
 interface TimePickerProps {
   onClose: () => void;
@@ -7,6 +8,7 @@ interface TimePickerProps {
 
 export const TimePicker: React.FC<TimePickerProps> = (props) => {
   const { onClose } = props;
+  const { hideBtn, showBtn } = useTelegram();
   const [valueGroups, setValueGroups] = useState({
     hours: '00',
     minutes: '00',
@@ -24,11 +26,13 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
       [name]: value,
     }));
   };
-  const handleConfirm = () => {
-    const selectedTime = `${valueGroups.hours}:${valueGroups.minutes}`;
-    console.log('Selected time:', selectedTime);
-    onClose();
-  };
+
+  const selectedTime = `${valueGroups.hours}:${valueGroups.minutes}`;
+  useEffect(() => {
+    if (valueGroups.hours === '00' && valueGroups.minutes === '00') {
+      hideBtn();
+    } else showBtn();
+  }, [valueGroups]);
 
   return (
     <div className="Test">
@@ -43,6 +47,7 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
       {/* <button className="Btn" onClick={handleConfirm}>
         Подтвердить
       </button> */}
+      <span>{selectedTime}</span>
     </div>
   );
 };
