@@ -27,21 +27,21 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
     }));
   };
 
-  //   const handleMainBtnClick = useCallback(() => {
-  //     const data = {
-  //       hours: valueGroups.hours,
-  //       minutes: valueGroups.minutes,
-  //       id,
-  //     };
-  //     telegram.sendData(JSON.stringify(data));
-  //     fetch('peacefulloosemotion.openpalms.repl.co', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
-  //   }, [valueGroups, id]);
+  const handleMainBtnClick = useCallback(() => {
+    const data = {
+      hours: valueGroups.hours,
+      minutes: valueGroups.minutes,
+      id,
+    };
+    telegram.sendData(JSON.stringify(data));
+    fetch('peacefulloosemotion.openpalms.repl.co', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  }, [valueGroups, id]);
   const handleSendData = useCallback(() => {
     const data = {
       hours: valueGroups.hours,
