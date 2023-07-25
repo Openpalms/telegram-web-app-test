@@ -27,21 +27,21 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
     }));
   };
 
-  //   const handleMainBtnClick = useCallback(() => {
-  //     const data = {
-  //       hours: valueGroups.hours,
-  //       minutes: valueGroups.minutes,
-  //       id,
-  //     };
-  //     telegram.sendData(JSON.stringify(data));
-  //     fetch('https://8b14-62-217-185-123.ngrok-free.app/content', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
-  //   }, [valueGroups, id]);
+  const handleMainBtnClick = useCallback(() => {
+    const data = {
+      hours: valueGroups.hours,
+      minutes: valueGroups.minutes,
+      id,
+    };
+    telegram.sendData(JSON.stringify(data));
+    fetch('https://amazing-horse-95575c.netlify.app', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  }, [valueGroups, id]);
   const handleSendData = useCallback(() => {
     const data = {
       hours: valueGroups.hours,
@@ -57,11 +57,11 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
   }, [valueGroups]);
 
   useEffect(() => {
-    telegram.onEvent('MainButtonClicked', handleSendData);
+    telegram.onEvent('MainButtonClicked', handleMainBtnClick);
     return () => {
-      telegram.offEvent('MainButtonClicked', handleSendData);
+      telegram.offEvent('MainButtonClicked', handleMainBtnClick);
     };
-  }, [handleSendData, telegram]);
+  }, [handleMainBtnClick, telegram]);
 
   return (
     <div className="Test">
