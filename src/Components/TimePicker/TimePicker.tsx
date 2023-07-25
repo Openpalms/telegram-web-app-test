@@ -34,7 +34,7 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
       id,
     };
     telegram.sendData(JSON.stringify(data));
-    fetch('http://localhost:8000', {
+    fetch('https://quiet-premium-raven.ngrok-free.app', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
