@@ -34,7 +34,7 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
       id,
     };
     telegram.sendData(JSON.stringify(data));
-    fetch('https://amazing-horse-95575c.netlify.app', {
+    fetch('peacefulloosemotion.openpalms.repl.co', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
