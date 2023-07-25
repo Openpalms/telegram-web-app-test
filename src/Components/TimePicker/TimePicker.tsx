@@ -26,7 +26,6 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
       [name]: value,
     }));
   };
-  const selectedTime = `${valueGroups.hours}:${valueGroups.minutes}`;
 
   const handleMainBtnClick = useCallback(() => {
     const data = {
