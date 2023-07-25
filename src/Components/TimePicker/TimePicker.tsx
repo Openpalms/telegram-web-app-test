@@ -2,18 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Picker from 'react-mobile-picker';
 import { useTelegram } from '../../hooks/useTelegram';
 
-interface TimePickerProps {
-  onClose: () => void;
-}
-
-export const TimePicker: React.FC<TimePickerProps> = (props) => {
-  const { onClose } = props;
-  const { telegram, hideBtn, showBtn, id } = useTelegram();
+export const TimePicker: React.FC = () => {
+  const { telegram } = useTelegram();
   const [valueGroups, setValueGroups] = useState({
     hours: '00',
     minutes: '00',
   });
-
+  const [shouldShowBtn, setShouldShowBtn] = useState(false);
   const optionGroups = {
     hours: [...Array(24).keys()].map((hour) => String(hour).padStart(2, '0')),
     minutes: [...Array(60).keys()].map((minute) =>
@@ -27,21 +22,21 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
     }));
   };
 
-  const handleMainBtnClick = useCallback(() => {
-    const data = {
-      hours: valueGroups.hours,
-      minutes: valueGroups.minutes,
-      id,
-    };
-    telegram.sendData(JSON.stringify(data));
-    fetch('localhost:8000', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-  }, [valueGroups, id]);
+  //   const handleMainBtnClick = useCallback(() => {
+  //     const data = {
+  //       hours: valueGroups.hours,
+  //       minutes: valueGroups.minutes,
+  //       id,
+  //     };
+  //     telegram.sendData(JSON.stringify(data));
+  //     fetch('localhost:8000', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
+  //   }, [valueGroups, id]);
   const handleSendData = useCallback(() => {
     const data = {
       hours: valueGroups.hours,
@@ -52,15 +47,16 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
 
   useEffect(() => {
     if (valueGroups.hours === '00' && valueGroups.minutes === '00') {
-      hideBtn();
-    } else showBtn();
+      setShouldShowBtn(false);
+    } else setShouldShowBtn(true);
   }, [valueGroups]);
 
   useEffect(() => {
-    telegram.onEvent('MainButtonClicked', handleMainBtnClick);
+    telegram.onEvent('MainButtonClicked', handleSendData);
     return () => {
-      telegram.offEvent('MainButtonClicked', handleMainBtnClick);
+      telegram.offEvent('MainButtonClicked', handleSendData);
     };
+    //   }, [handleMainBtnClick, telegram]);
   }, [handleSendData, telegram]);
 
   return (
@@ -73,9 +69,11 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
         itemHeight={50}
         wheel={'normal'}
       />
-      <button className="Btn" onClick={handleSendData}>
-        Подтвердить
-      </button>
+      {shouldShowBtn && (
+        <button className="confirm_button" onClick={handleSendData}>
+          Подтвердить
+        </button>
+      )}
     </div>
   );
 };

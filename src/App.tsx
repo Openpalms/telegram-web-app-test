@@ -13,17 +13,11 @@ function App() {
   const { telegram } = useTelegram();
   useEffect(() => {
     telegram.ready();
-    telegram.MainButton.setParams({
-      text: 'Подтвердить',
-    });
   }, []);
-  const onClose = () => {
-    telegram.close();
-  };
 
   return (
     <div className="App">
-      <TimePicker onClose={onClose} />
+      <TimePicker />
     </div>
   );
 }
