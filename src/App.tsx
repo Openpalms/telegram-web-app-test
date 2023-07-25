@@ -12,7 +12,10 @@ const telegram = window.Telegram.WebApp;
 function App() {
   useEffect(() => {
     telegram.ready();
-    telegram.MainButton.isVisible(true);
+    telegram.MainButton.show();
+    telegram.MainButton.setParams({
+      text: 'Подтвердить',
+    });
   }, []);
   const onClose = () => {
     telegram.close();
