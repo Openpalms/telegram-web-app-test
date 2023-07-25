@@ -8,7 +8,7 @@ interface TimePickerProps {
 
 export const TimePicker: React.FC<TimePickerProps> = (props) => {
   const { onClose } = props;
-  const { hideBtn, showBtn } = useTelegram();
+  const { telegram, hideBtn, showBtn } = useTelegram();
   const [valueGroups, setValueGroups] = useState({
     hours: '00',
     minutes: '00',
@@ -26,13 +26,22 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
       [name]: value,
     }));
   };
-
   const selectedTime = `${valueGroups.hours}:${valueGroups.minutes}`;
+  const handleMainBtnClick = () => {
+    telegram.sendData(JSON.stringify(selectedTime));
+  };
   useEffect(() => {
     if (valueGroups.hours === '00' && valueGroups.minutes === '00') {
       hideBtn();
     } else showBtn();
   }, [valueGroups]);
+
+  useEffect(() => {
+    telegram.onEvent('MainButtonClicked', handleMainBtnClick);
+    return () => {
+      telegram.offEvent('MainButtonClicked', handleMainBtnClick);
+    };
+  }, []);
 
   return (
     <div className="Test">
