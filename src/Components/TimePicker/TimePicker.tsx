@@ -35,7 +35,7 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
       id,
     };
     telegram.sendData(JSON.stringify(data));
-    fetch('http://localhost:8000', {
+    fetch('https://be5a-62-217-185-123.ngrok-free.app', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
         optionGroups={optionGroups}
         valueGroups={valueGroups}
         onChange={handleChange}
-        height={300}
+        height={400}
         itemHeight={50}
         wheel={'normal'}
       />
