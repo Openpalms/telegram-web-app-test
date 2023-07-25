@@ -27,21 +27,21 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
     }));
   };
 
-  const handleMainBtnClick = useCallback(() => {
-    const data = {
-      hours: valueGroups.hours,
-      minutes: valueGroups.minutes,
-      id,
-    };
-    telegram.sendData(JSON.stringify(data));
-    fetch('peacefulloosemotion.openpalms.repl.co', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-  }, [valueGroups, id]);
+  //   const handleMainBtnClick = useCallback(() => {
+  //     const data = {
+  //       hours: valueGroups.hours,
+  //       minutes: valueGroups.minutes,
+  //       id,
+  //     };
+  //     telegram.sendData(JSON.stringify(data));
+  //     fetch('peacefulloosemotion.openpalms.repl.co', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
+  //   }, [valueGroups, id]);
   const handleSendData = useCallback(() => {
     const data = {
       hours: valueGroups.hours,
@@ -61,8 +61,12 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
     return () => {
       telegram.offEvent('MainButtonClicked', handleSendData);
     };
-  }, [handleMainBtnClick, telegram]);
-
+  }, [handleSendData, telegram]);
+  useEffect(() => {
+    telegram.MainButton.setParams({
+      text: 'Отправить данные',
+    });
+  }, []);
   return (
     <div className="Test">
       <Picker
@@ -73,9 +77,9 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
         itemHeight={50}
         wheel={'normal'}
       />
-      <button className="Btn" onClick={handleSendData}>
+      {/* <button className="Btn" onClick={handleSendData}>
         Подтвердить
-      </button>
+      </button> */}
     </div>
   );
 };
