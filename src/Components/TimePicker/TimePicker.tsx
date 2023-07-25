@@ -34,7 +34,7 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
       id,
     };
     telegram.sendData(JSON.stringify(data));
-    fetch('peacefulloosemotion.openpalms.repl.co', {
+    fetch('localhost:8000', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -61,12 +61,8 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
     return () => {
       telegram.offEvent('MainButtonClicked', handleMainBtnClick);
     };
-  }, [handleMainBtnClick, telegram]);
-  useEffect(() => {
-    telegram.MainButton.setParams({
-      text: 'Отправить данные',
-    });
-  }, []);
+  }, [handleSendData, telegram]);
+
   return (
     <div className="Test">
       <Picker
@@ -77,9 +73,9 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
         itemHeight={50}
         wheel={'normal'}
       />
-      {/* <button className="Btn" onClick={handleSendData}>
+      <button className="Btn" onClick={handleSendData}>
         Подтвердить
-      </button> */}
+      </button>
     </div>
   );
 };
