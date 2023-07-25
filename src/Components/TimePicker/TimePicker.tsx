@@ -48,20 +48,20 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
       minutes: valueGroups.minutes,
     };
     telegram.sendData(JSON.stringify(data));
-  }, []);
+  }, [valueGroups]);
 
-  //   useEffect(() => {
-  //     if (valueGroups.hours === '00' && valueGroups.minutes === '00') {
-  //       hideBtn();
-  //     } else showBtn();
-  //   }, [valueGroups]);
+  useEffect(() => {
+    if (valueGroups.hours === '00' && valueGroups.minutes === '00') {
+      hideBtn();
+    } else showBtn();
+  }, [valueGroups]);
 
-  //   useEffect(() => {
-  //     telegram.onEvent('MainButtonClicked', handleMainBtnClick);
-  //     return () => {
-  //       telegram.offEvent('MainButtonClicked', handleMainBtnClick);
-  //     };
-  //   }, [handleMainBtnClick, telegram]);
+  useEffect(() => {
+    telegram.onEvent('MainButtonClicked', handleSendData);
+    return () => {
+      telegram.offEvent('MainButtonClicked', handleSendData);
+    };
+  }, [handleSendData, telegram]);
 
   return (
     <div className="Test">
@@ -73,7 +73,9 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
         itemHeight={50}
         wheel={'normal'}
       />
-      <button onClick={handleSendData}>Подтвердить</button>
+      <button className="Btn" onClick={handleSendData}>
+        Подтвердить
+      </button>
     </div>
   );
 };
