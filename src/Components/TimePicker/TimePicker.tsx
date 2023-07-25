@@ -27,33 +27,41 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
     }));
   };
 
-  const handleMainBtnClick = useCallback(() => {
+  //   const handleMainBtnClick = useCallback(() => {
+  //     const data = {
+  //       hours: valueGroups.hours,
+  //       minutes: valueGroups.minutes,
+  //       id,
+  //     };
+  //     telegram.sendData(JSON.stringify(data));
+  //     fetch('https://8b14-62-217-185-123.ngrok-free.app/content', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
+  //   }, [valueGroups, id]);
+  const handleSendData = useCallback(() => {
     const data = {
       hours: valueGroups.hours,
       minutes: valueGroups.minutes,
-      id,
     };
     telegram.sendData(JSON.stringify(data));
-    fetch('https://8b14-62-217-185-123.ngrok-free.app/web-data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-  }, [valueGroups, id]);
-  useEffect(() => {
-    if (valueGroups.hours === '00' && valueGroups.minutes === '00') {
-      hideBtn();
-    } else showBtn();
-  }, [valueGroups]);
+  }, []);
 
-  useEffect(() => {
-    telegram.onEvent('MainButtonClicked', handleMainBtnClick);
-    return () => {
-      telegram.offEvent('MainButtonClicked', handleMainBtnClick);
-    };
-  }, [handleMainBtnClick]);
+  //   useEffect(() => {
+  //     if (valueGroups.hours === '00' && valueGroups.minutes === '00') {
+  //       hideBtn();
+  //     } else showBtn();
+  //   }, [valueGroups]);
+
+  //   useEffect(() => {
+  //     telegram.onEvent('MainButtonClicked', handleMainBtnClick);
+  //     return () => {
+  //       telegram.offEvent('MainButtonClicked', handleMainBtnClick);
+  //     };
+  //   }, [handleMainBtnClick, telegram]);
 
   return (
     <div className="Test">
@@ -65,6 +73,7 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
         itemHeight={50}
         wheel={'normal'}
       />
+      <button onClick={handleSendData}>Подтвердить</button>
     </div>
   );
 };
