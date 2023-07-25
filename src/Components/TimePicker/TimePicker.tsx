@@ -57,11 +57,11 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
   }, [valueGroups]);
 
   useEffect(() => {
-    telegram.onEvent('MainButtonClicked', handleSendData);
+    telegram.onEvent('MainButtonClicked', handleMainBtnClick);
     return () => {
-      telegram.offEvent('MainButtonClicked', handleSendData);
+      telegram.offEvent('MainButtonClicked', handleMainBtnClick);
     };
-  }, [handleSendData, telegram]);
+  }, [handleMainBtnClick, telegram]);
   useEffect(() => {
     telegram.MainButton.setParams({
       text: 'Отправить данные',
