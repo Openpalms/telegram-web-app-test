@@ -20,7 +20,7 @@ body {
   outline: none;
   cursor: pointer;
   background-color: var(--tg-theme-button-color);
-  color: var(--tg-theme-button-text-color);
+  color: var(--tg-theme-link-color);
 }
 .Btn:hover {
   background-color: var(--tg-theme-secondary-bg-color);
@@ -36,5 +36,5 @@ body {
   align-items: center;
 }
 .picker-container .picker-column .picker-item.picker-item-selected {
-  color: #fff !important;
+  color: var(--tg-theme-text-color) !important;
 }

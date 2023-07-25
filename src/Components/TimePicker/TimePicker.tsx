@@ -36,7 +36,7 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
         optionGroups={optionGroups}
         valueGroups={valueGroups}
         onChange={handleChange}
-        height={500}
+        height={300}
         itemHeight={50}
         wheel={'normal'}
       />

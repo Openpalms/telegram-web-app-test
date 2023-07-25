@@ -12,13 +12,24 @@ const telegram = window.Telegram.WebApp;
 function App() {
   useEffect(() => {
     telegram.ready();
+    telegram.MainButton.isVisible(true);
   }, []);
   const onClose = () => {
     telegram.close();
   };
+  const onToggle = () => {
+    if (telegram.MainButton.isOpened) {
+      telegram.MainButton.hide();
+    } else {
+      telegram.MainButton.show();
+    }
+  };
   return (
     <div className="App">
       <TimePicker onClose={onClose} />
+      <button className="Btn" onClick={onToggle}>
+        Закрыть
+      </button>
     </div>
   );
 }
