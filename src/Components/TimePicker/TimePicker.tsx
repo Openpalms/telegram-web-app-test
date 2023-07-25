@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Picker from 'react-mobile-picker';
 import { useTelegram } from '../../hooks/useTelegram';
 
@@ -8,7 +8,7 @@ interface TimePickerProps {
 
 export const TimePicker: React.FC<TimePickerProps> = (props) => {
   const { onClose } = props;
-  const { telegram, hideBtn, showBtn } = useTelegram();
+  const { telegram, hideBtn, showBtn, id } = useTelegram();
   const [valueGroups, setValueGroups] = useState({
     hours: '00',
     minutes: '00',
@@ -27,9 +27,22 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
     }));
   };
   const selectedTime = `${valueGroups.hours}:${valueGroups.minutes}`;
-  const handleMainBtnClick = () => {
-    telegram.sendData(JSON.stringify(selectedTime));
-  };
+
+  const handleMainBtnClick = useCallback(() => {
+    const data = {
+      hours: valueGroups.hours,
+      minutes: valueGroups.minutes,
+      id,
+    };
+    telegram.sendData(JSON.stringify(data));
+    fetch('http://localhost:8000', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  }, [valueGroups, id]);
   useEffect(() => {
     if (valueGroups.hours === '00' && valueGroups.minutes === '00') {
       hideBtn();
@@ -41,7 +54,7 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
     return () => {
       telegram.offEvent('MainButtonClicked', handleMainBtnClick);
     };
-  }, []);
+  }, [handleMainBtnClick]);
 
   return (
     <div className="Test">
@@ -53,10 +66,6 @@ export const TimePicker: React.FC<TimePickerProps> = (props) => {
         itemHeight={50}
         wheel={'normal'}
       />
-      {/* <button className="Btn" onClick={handleConfirm}>
-        Подтвердить
-      </button> */}
-      <span>{selectedTime}</span>
     </div>
   );
 };

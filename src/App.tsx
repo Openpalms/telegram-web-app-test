@@ -13,7 +13,6 @@ function App() {
   const { telegram } = useTelegram();
   useEffect(() => {
     telegram.ready();
-    telegram.MainButton.show();
     telegram.MainButton.setParams({
       text: 'Подтвердить',
     });

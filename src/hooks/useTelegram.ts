@@ -8,5 +8,5 @@ export const useTelegram = () => {
     telegram.MainButton.show();
   };
 
-  return { telegram, hideBtn, showBtn };
+  return { telegram, hideBtn, showBtn, id: telegram.initDataUnsafe?.query_id };
 };
