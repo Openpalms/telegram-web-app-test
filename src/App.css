@@ -35,7 +35,6 @@ body {
   align-items: center;
   z-index: 9999;
 }
-/* @media (max-width: 767px) { */
 .picker-container .picker-column .picker-item.picker-item-selected {
   color: var(--tg-theme-link-color) !important;
   font: 1em 'Fira Sans', sans-serif !important;
@@ -48,11 +47,3 @@ body {
 .picker-highlight {
   margin: 0 !important;
 }
-
-/* } */
-/* .picker-container .picker-column .picker-item.picker-item-selected {
-  color: var(--tg-theme-link-color) !important;
-  font: 1em 'Fira Sans', sans-serif !important;
-  z-index: 9999 !important;
-}
- */

@@ -16,12 +16,12 @@ export const TimePicker: React.FC = () => {
     ),
   };
   const handleChange = (name: any, value: any) => {
-    setValueGroups((prevValueGroups) => ({
+    setValueGroups((prevValueGroups: any) => ({
       ...prevValueGroups,
       [name]: value,
     }));
   };
-
+  /// обработка мейнКнопки ( с сервером )
   //   const handleMainBtnClick = useCallback(() => {
   //     const data = {
   //       hours: valueGroups.hours,
