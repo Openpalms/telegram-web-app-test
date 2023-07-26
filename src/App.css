@@ -35,9 +35,9 @@ body {
   justify-content: center;
   align-items: center;
 }
-.picker-container .picker-column .picker-item.picker-item-selected {
-  /* color: var(--tg-theme-text-color) !important; */
-  /* color: var(--tg-theme-link-color) !important; */
+/* .picker-container .picker-column .picker-item.picker-item-selected {
+  color: var(--tg-theme-text-color) !important;
+  color: var(--tg-theme-link-color) !important;
   color: rgb(241, 241, 75) !important;
   z-index: 9999 !important;
   opacity: 1 !important;
@@ -46,4 +46,4 @@ body {
   color: rgb(241, 241, 75) !important;
   z-index: 9999 !important;
   opacity: 1 !important;
-}
+} */
