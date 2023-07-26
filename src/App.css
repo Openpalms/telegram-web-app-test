@@ -40,6 +40,9 @@ body {
   font: 5em 'Fira Sans', sans-serif !important;
   margin: 40px auto;
   z-index: 9999 !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  white-space: normal !important;
 }
 .picker-highlight {
   display: none;
