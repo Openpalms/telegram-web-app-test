@@ -56,7 +56,6 @@ export const TimePicker: React.FC = () => {
     return () => {
       telegram.offEvent('MainButtonClicked', handleSendData);
     };
-    //   }, [handleMainBtnClick, telegram]);
   }, [handleSendData, telegram]);
 
   return (
@@ -70,7 +69,7 @@ export const TimePicker: React.FC = () => {
         wheel={'normal'}
       />
       {shouldShowBtn && (
-        <button className="confirm_button" onClick={handleSendData}>
+        <button className="Btn" onClick={handleSendData}>
           Подтвердить
         </button>
       )}
