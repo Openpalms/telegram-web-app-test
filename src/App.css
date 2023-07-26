@@ -39,7 +39,7 @@ body {
 .picker-container .picker-column .picker-item.picker-item-selected {
   color: var(--tg-theme-link-color) !important;
   font: 1em 'Fira Sans', sans-serif !important;
-  margin: 45px auto;
+  margin: 50px auto 45px auto;
   z-index: 9999 !important;
   opacity: 1 !important;
   overflow: visible !important;
