@@ -66,7 +66,7 @@ export const TimePicker: React.FC = () => {
         onChange={handleChange}
         height={400}
         itemHeight={50}
-        wheel={'normal'}
+        wheel={'natural'}
       />
       {shouldShowBtn && (
         <button className="Btn" onClick={handleSendData}>
