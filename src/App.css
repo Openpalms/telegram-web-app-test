@@ -45,6 +45,9 @@ body {
   overflow: visible !important;
   white-space: normal !important;
 }
+.picker-highlight {
+  margin: 0 !important;
+}
 
 /* } */
 /* .picker-container .picker-column .picker-item.picker-item-selected {
