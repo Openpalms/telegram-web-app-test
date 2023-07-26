@@ -35,14 +35,15 @@ body {
   justify-content: center;
   align-items: center;
 }
-/* .picker-container .picker-column .picker-item.picker-item-selected {
+.picker-container .picker-column .picker-item.picker-item-selected {
   color: var(--tg-theme-text-color) !important;
   color: var(--tg-theme-link-color) !important;
+  font: 1.2em 'Fira Sans', sans-serif !important;
   color: rgb(241, 241, 75) !important;
   z-index: 9999 !important;
   opacity: 1 !important;
 }
-.picker-item-selected {
+/* .picker-item-selected {
   color: rgb(241, 241, 75) !important;
   z-index: 9999 !important;
   opacity: 1 !important;
