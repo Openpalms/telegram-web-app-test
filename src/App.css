@@ -36,5 +36,6 @@ body {
   align-items: center;
 }
 .picker-container .picker-column .picker-item.picker-item-selected {
-  color: var(--tg-theme-text-color) !important;
+  /* color: var(--tg-theme-text-color) !important; */
+  color: var(--tg-theme-link-color) !important;
 }
